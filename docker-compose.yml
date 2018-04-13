@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+    db:
+        image: mysql:5.7
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: areyouinfordinner
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
+        volumes:
+            - ./.docker/mysql-data:/var/lib/mysql
+
+    node:
+        build:
+            context: '.docker/node'
+        working_dir: /var/www
+        volumes:
+          - ./:/var/www
+        links:
+          - db
+        ports:
+          - 3000:3000
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - 8088:80
+        environment:
+            PMA_HOST: db
+            PMA_USER: root
+            PMA_PASSWORD: root
+            PMA_ARBITRARY: 1
+        links:
+            - db
+
+    nginx:
+        build:
+            context: '.docker/nginx'
+        ports:
+            - 80:80
+            - 43554:43554
+        environment:
+           - NGINX_HOST=$NGINX_HOST
+        links:
+           - node

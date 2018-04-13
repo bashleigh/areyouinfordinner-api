@@ -1,0 +1,11 @@
+{
+  "type": "mysql",
+  "host": "db",
+  "port": 3306,
+  "username": "root",
+  "password": "root",
+  "database": "areyouinfordinner",
+  "entities": ["src/**/**.entity{.ts,.js}"],
+  "synchronize": true,
+  "migrations": ["migration/*.js"]
+}
