@@ -7,9 +7,7 @@ import {
 	Component,
 	Inject,
 } from '@nestjs/common';
-import {
-	AuthService,
-} from './';
+import AuthService from './auth.service';
 
 import {
 	ConfigService,
@@ -19,7 +17,7 @@ import {
 export default class JwtStrategy extends Strategy {
 	constructor(
 		private readonly authService: AuthService,
-		private readonly config: ConfigService
+		private readonly config: ConfigService,
 	) {
 		super(
 			{
@@ -32,7 +30,7 @@ export default class JwtStrategy extends Strategy {
 		passport.use(this);
 	}
 
-	public async verify(req, payload, done) {
+	public async verify(request, payload, done) {
 		const user = await this.authService.validateUser(payload);
 		if (!user) {
 			return done('Unauthorized', false);

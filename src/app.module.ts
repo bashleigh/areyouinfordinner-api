@@ -1,11 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import AuthController from './auth.controller';
-import UserService from './user.service';
-import AuthService from './auth.service';
-import JwtService from './jwt.service';
 
-import * as Entities from './entities';
 import {
   ConfigService,
 } from '@bashleigh/nest-config';
@@ -17,19 +12,18 @@ import {
   Connection,
 } from 'typeorm';
 
+import AuthModule from './auth.module';
+
 @Module({
   imports: [
-    TypeOrmModule.forRoot(Entities),
+    TypeOrmModule.forRoot(),
     ConfigService,
+    AuthModule,
   ],
   controllers: [
     AppController,
-    AuthController,
   ],
   components: [
-    AuthService,
-    UserService,
-    JwtService,
   ],
 })
 export default class AppModule {

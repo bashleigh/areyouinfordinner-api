@@ -1,4 +1,4 @@
-import ValidationPipe from 'validation.pipe';
+import ValidationPipe from './validation.pipe';
 
 export {
 	ValidationPipe,
