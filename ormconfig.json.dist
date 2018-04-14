@@ -7,5 +7,12 @@
   "database": "areyouinfordinner",
   "entities": ["src/**/**.entity{.ts,.js}"],
   "synchronize": true,
-  "migrations": ["migration/*.js"]
+  "emitDecoratorMetadata": true,
+  "experimentalDecorators": true,
+  "migrations": [
+    "src/migrations/*.js"
+  ],
+  "cli": {
+    "migrationsDir": "src/migrations"
+  }
 }

@@ -2,6 +2,14 @@
 # yarn lockfile v1
 
 
+"@bashleigh/nest-config@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@bashleigh/nest-config/-/nest-config-0.0.6.tgz#50760af681b0f9624e38a07a4d9419d4135176f3"
+  dependencies:
+    class-validator "^0.8.1"
+    dotenv "^5.0.0"
+    rxjs "^5.4.2"
+
 "@nestjs/common@^4.5.9":
   version "4.6.6"
   resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-4.6.6.tgz#c1043647a05824a4d950f12743fb4e1107bf60cc"
@@ -875,6 +883,12 @@ class-validator@0.8.1:
   dependencies:
     validator "9.2.0"
 
+class-validator@^0.8.1:
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/class-validator/-/class-validator-0.8.5.tgz#484785acda98f68549c3a84dc1bb2f77b736dc58"
+  dependencies:
+    validator "9.2.0"
+
 clean-css@^3.1.9:
   version "3.4.28"
   resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-3.4.28.tgz#bf1945e82fc808f55695e6ddeaec01400efd03ff"
@@ -1259,6 +1273,10 @@ dot-prop@^4.1.0:
 dotenv@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d"
+
+dotenv@^5.0.0:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-5.0.1.tgz#a5317459bd3d79ab88cff6e44057a6a3fbb1fcef"
 
 double-ended-queue@^2.1.0-0:
   version "2.1.0-0"
@@ -3964,7 +3982,7 @@ rimraf@2, rimraf@^2.5.1, rimraf@^2.6.1:
   dependencies:
     glob "^7.0.5"
 
-rxjs@^5.5.6:
+rxjs@^5.4.2, rxjs@^5.5.6:
   version "5.5.10"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.5.10.tgz#fde02d7a614f6c8683d0d1957827f492e09db045"
   dependencies:
