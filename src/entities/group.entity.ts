@@ -2,43 +2,37 @@ import {
 	Entity,
 	PrimaryGeneratedColumn,
 	Column,
-	Index,
 	CreateDateColumn,
 	UpdateDateColumn,
+	Index,
 	ManyToMany,
+	JoinTable,
 } from 'typeorm';
-import Group from './group.entity';
+import User from './user.entity';
 
 @Entity()
-export default class User {
+export default class Group {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
 	@Column()
-	firstname: string;
-
-	@Column()
-	lastname: string;
-
-	@Column()
-	@Index({
-		unique: true,
-	})
-	email: string;
-
-	@Column({
-		select: false,
-	})
-	password: string;
+	name: string;
 
 	@Column({
 		default: 1,
 	})
 	isActive: boolean;
 
-	@ManyToMany(type => Group, group => group.users)
-	groups: Group[];
+	@Column()
+	@Index({
+		unique: true,
+	})
+	code: string;
+
+	@ManyToMany(type => User, user => user.groups)
+	@JoinTable()
+	users: User[];
 
 	@CreateDateColumn()
 	created;

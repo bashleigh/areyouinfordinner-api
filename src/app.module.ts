@@ -13,12 +13,14 @@ import {
 } from 'typeorm';
 
 import AuthModule from './auth.module';
+import GroupModule from './group.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
     ConfigService,
     AuthModule,
+    GroupModule,
   ],
   controllers: [
     AppController,
