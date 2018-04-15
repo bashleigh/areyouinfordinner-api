@@ -66,11 +66,7 @@ export default class UserService {
 
 		user.password = await this.getHash(user.password);
 
-		try {
-			const result = await this.userRepository.save(user);
-		} catch (e) {
-			//TODO Catch mongo unique exception and throw a 422 for duplicated entity
-		}
+		const result = await this.userRepository.save(user);
 
 		delete result.password;
 
@@ -101,7 +97,7 @@ export default class UserService {
 	}
 
 	async getHash(password: string|undefined): Promise<string> {
-		return bcrypt.hash(password, this.config.get('JWT_SALT_ROUNDS', this.saltRounds));
+		return await bcrypt.hash(password, 10);
 	}
 
 	async compareHash(password: string|undefined, hash: string|undefined): Promise<boolean> {

@@ -25,7 +25,7 @@ export default class JwtStrategy extends Strategy {
 				passReqToCallback: true,
 				secretOrKey: config.get('JWT_SECRET'),
 			},
-			async (req, payload, next) => await this.verify(req, payload, next)
+			async (req, payload, next) => await this.verify(req, payload, next),
 		);
 		passport.use(this);
 	}

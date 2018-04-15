@@ -30,7 +30,9 @@ export default class User {
 	})
 	password: string;
 
-	@Column()
+	@Column({
+		default: 1,
+	})
 	isActive: boolean;
 
 	@CreateDateColumn()

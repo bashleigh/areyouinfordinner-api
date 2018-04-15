@@ -36,7 +36,14 @@ export default class AuthController {
 
 	@Post('register')
 	async register(@Body(new ValidationPipe()) body: UserModel): Promise<object> {
-		return await this.userService.create(body);
+		let user = await this.userService.create(body);
+
+		const token = this.authService.createToken(user);
+
+		return {
+			user: user,
+			token: token,
+		};
 	}
 
 	@Get('me')
