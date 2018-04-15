@@ -1,6 +1,9 @@
 import {
 	Module,
+	MiddlewaresConsumer,
+	RequestMethod,
 } from '@nestjs/common';
+import * as passport from 'passport';
 import AuthController from './auth.controller';
 import UserService from './user.service';
 import AuthService from './auth.service';
@@ -32,4 +35,12 @@ import {
 	],
 })
 export default class AuthModule {
+	public configure(consumer: MiddlewaresConsumer) {
+		consumer
+			.apply(passport.authenticate('jwt', { session: false }))
+			.forRoutes(
+				// { path: '/admin/*', method: RequestMethod.ALL },
+				{ path: '/auth/me', method: RequestMethod.ALL },
+			);
+	}
 }
