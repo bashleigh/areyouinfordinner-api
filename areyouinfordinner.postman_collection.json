@@ -1,7 +1,8 @@
 {
 	"info": {
-		"_postman_id": "4cffafd0-40f7-42af-9988-c1a8f8bb9d8c",
 		"name": "areyouinfordinner",
+		"_postman_id": "4cffafd0-40f7-42af-9988-c1a8f8bb9d8c",
+		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -17,7 +18,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\": \"test@test.com\",\n\t\"password\": \"password\",\n\t\"firstname\": \"test\",\n\t\"lastname\": \"test\"\n}"
+					"raw": "{\n  \"email\": \"test@test.com\",\n  \"password\": \"password\",\n  \"firstname\": \"test\",\n  \"lastname\": \"test\"\n}"
 				},
 				"url": {
 					"raw": "localhost:3000/auth/register",
@@ -29,7 +30,8 @@
 						"auth",
 						"register"
 					]
-				}
+				},
+				"description": null
 			},
 			"response": []
 		},
@@ -45,7 +47,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\": \"test3@test.com\",\n\t\"password\": \"password\"\n}"
+					"raw": "{\n  \"email\": \"test3@test.com\",\n  \"password\": \"password\"\n}"
 				},
 				"url": {
 					"raw": "localhost:3000/auth/login",
@@ -57,7 +59,8 @@
 						"auth",
 						"login"
 					]
-				}
+				},
+				"description": null
 			},
 			"response": []
 		},
@@ -87,7 +90,109 @@
 						"auth",
 						"me"
 					]
-				}
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Create group",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE1MjM4OTE1MjYsImV4cCI6MTUyMzg5NTEyNn0.iUJkwXSkCr8-X-bd6_IMBO4JbhIDmTU-g5lkalUBC7g"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"test\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/group/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"group",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Show group",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE1MjM4OTE1MjYsImV4cCI6MTUyMzg5NTEyNn0.iUJkwXSkCr8-X-bd6_IMBO4JbhIDmTU-g5lkalUBC7g"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"test\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/group/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"group",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Group update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQHRlc3QuY29tIiwiaWF0IjoxNTIzODkyMzk4LCJleHAiOjE1MjM4OTU5OTh9.rciGPKhznycEhPLULzV1oY4yA0QgcLJ6mZBU3bHjK7U"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"test2@test.com\",\n  \"password\": \"password\",\n  \"firstname\": \"test\",\n  \"lastname\": \"test\"\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/group/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"group",
+						"1"
+					]
+				},
+				"description": ""
 			},
 			"response": []
 		}
