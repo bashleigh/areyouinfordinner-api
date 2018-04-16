@@ -47,7 +47,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"email\": \"test3@test.com\",\n  \"password\": \"password\"\n}"
+					"raw": "{\n  \"email\": \"test@test.com\",\n  \"password\": \"password\"\n}"
 				},
 				"url": {
 					"raw": "localhost:3000/auth/login",
@@ -140,7 +140,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE1MjM4OTE1MjYsImV4cCI6MTUyMzg5NTEyNn0.iUJkwXSkCr8-X-bd6_IMBO4JbhIDmTU-g5lkalUBC7g"
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE1MjM4OTM1NzgsImV4cCI6MTUyMzg5NzE3OH0.Hsn1huV28aozgaXqKULCHwF847NNd0_vSInbAgb0y8w"
 					}
 				],
 				"body": {
@@ -148,7 +148,7 @@
 					"raw": "{\n\t\"name\": \"test\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:3000/group/1",
+					"raw": "http://localhost:3000/group/JQVmRWlWyaIqxwVxggxglVUDGusnqoIV",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -156,7 +156,7 @@
 					"port": "3000",
 					"path": [
 						"group",
-						"1"
+						"JQVmRWlWyaIqxwVxggxglVUDGusnqoIV"
 					]
 				},
 				"description": ""
@@ -182,14 +182,14 @@
 					"raw": "{\n  \"email\": \"test2@test.com\",\n  \"password\": \"password\",\n  \"firstname\": \"test\",\n  \"lastname\": \"test\"\n}"
 				},
 				"url": {
-					"raw": "localhost:3000/group/1",
+					"raw": "localhost:3000/group/JQVmRWlWyaIqxwVxggxglVUDGusnqoIV",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
 						"group",
-						"1"
+						"JQVmRWlWyaIqxwVxggxglVUDGusnqoIV"
 					]
 				},
 				"description": ""

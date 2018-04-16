@@ -51,13 +51,13 @@ export default class GroupService {
 
 		params.skip = params.skip * params.take;
 
-		const users = await this.groupRepository.find(params);
+		const groups = await this.groupRepository.find(params);
 
 		const total = await this.groupRepository.count();
 
 		return new Paginate({
-			items: users,
-			count: users.length,
+			items: groups,
+			count: groups.length,
 			total: total,
 			pages: Math.round(total / params.take),
 		});
@@ -70,15 +70,18 @@ export default class GroupService {
 		return  await this.groupRepository.save(group);
 	}
 
-	async update(id: number, params: GroupModel, user: UserModel): Group {
-		let group = await this.groupRepository.findOneById(id, {
+	async update(code: string, params: GroupModel, user: UserModel): Group {
+		let group = await this.groupRepository.findOne({
+			where: {
+				code: code,
+			},
 			relations: [
 				'users',
 			],
 		});
-
-		if (!group) throw new NotFoundException('entity not found');
 		
+		if (!group) throw new NotFoundException('entity not found');
+
 		group.users.push(user);
 
 		group = {
@@ -96,5 +99,13 @@ export default class GroupService {
 
 	async findOneById(id: number): Promise<Group> {
 		return await this.groupRepository.findOneById(id);
+	}
+
+	async findOneByCode(code: string): Promise<Group> {
+		return await this.groupRepository.findOne({
+			where: {
+				code: code,
+			},
+		});
 	}
 }

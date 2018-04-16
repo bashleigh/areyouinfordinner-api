@@ -39,13 +39,13 @@ export default class GroupController {
 		return await this.groupService.create(body, request.user);
 	}
 
-	@Put(':id')
-	async update(@Req() request, @Param('id') id: number, @Body(new ValidationPipe()) body: GroupModel): Promise<Group> {
-		return await this.groupService.update(id, body, request.user);
+	@Put(':code')
+	async update(@Req() request, @Param('code') code: number, @Body(new ValidationPipe()) body: GroupModel): Promise<Group> {
+		return await this.groupService.update(code, body, request.user);
 	}
 
-	@Get(':id')
-	async show(@Param('id') id: number): Promise<Group> {
-		return await this.groupService.findOneById(id);
+	@Get(':code')
+	async show(@Param('code') code: string): Promise<Group> {
+		return await this.groupService.findOneByCode(code);
 	}
 }
