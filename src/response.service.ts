@@ -1,5 +1,6 @@
 import {
     Component,
+    NotFoundException,
 } from '@nestjs/common';
 
 import {
@@ -32,5 +33,22 @@ export default class ResponseService {
         response.user = user;
         response.group = group;
         return await this.responseRepository.save(response);
+    }
+
+    async update(id: number, params: ResponseModel, user: UserModel): Promise<Response> {
+        const response = await this.responseRepository.findOne({
+            where: {
+                id: id,
+                userId: user.id,
+            },
+        });
+
+        if (!response) throw NotFoundException;
+
+        response.attending = params.attending;
+
+        await this.responseRepository.save(response);
+
+        return response;
     }
 }

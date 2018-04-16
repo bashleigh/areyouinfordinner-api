@@ -73,6 +73,6 @@ export default class ResponseController {
         // TODO check if this is handled above
         // if (!group) throw
 
-        return await this.responseService.create(body, group, request.user);
+        return await this.responseService.update(id, body, group, request.user);
     }
 }
