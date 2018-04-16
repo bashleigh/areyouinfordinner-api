@@ -1,7 +1,7 @@
 Are You In For Dinner API
 ===
 
-An API for tracking if you're in for dinner or not.
+An API for tracking if you're in for dinner or not. To stop the arguments about who did or didn't say they were or weren't in for dinner. Built to prove my mum wrong.
 
 ## Setup 
 
