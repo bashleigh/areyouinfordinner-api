@@ -392,3 +392,4 @@ dokcer-compose.yml
 
 .gitignore
 .docker/mysql-data
+ormconfig.json
