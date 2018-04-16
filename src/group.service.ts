@@ -64,7 +64,6 @@ export default class GroupService {
 	}
 
 	async create(params: GroupModel, user: UserModel): Group {
-
 		const group = this.groupRepository.create(params);
 		group.code = generate();
 		group.users = [user];
@@ -72,10 +71,14 @@ export default class GroupService {
 	}
 
 	async update(id: number, params: GroupModel, user: UserModel): Group {
-		let group = await this.findOneById(id);
+		let group = await this.groupRepository.findOneById(id, {
+			relations: [
+				'users',
+			],
+		});
 
 		if (!group) throw new NotFoundException('entity not found');
-
+		
 		group.users.push(user);
 
 		group = {

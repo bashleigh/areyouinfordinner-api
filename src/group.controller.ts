@@ -30,23 +30,22 @@ export default class GroupController {
 
 	@Get('')
 	async index(@Req() request) {
-		console.log('hi');
-		// TODO paginated list of user's groups
-		return 'hello';
+		console.log(request.user);
+		return request.user.groups;
 	}
 
 	@Post('')
 	async create(@Req() request, @Body(new ValidationPipe()) body: GroupModel): Promise<Group> {
-		  return await this.groupService.create(body, request.user);
+		return await this.groupService.create(body, request.user);
 	}
 
 	@Put(':id')
-	async create(@Req() request, @Param id: number, @Body(new ValidationPipe()) body: GroupModel): Promise<Group> {
+	async update(@Req() request, @Param('id') id: number, @Body(new ValidationPipe()) body: GroupModel): Promise<Group> {
 		return await this.groupService.update(id, body, request.user);
 	}
 
 	@Get(':id')
-	async show(@Param id: number): Promise<Group> {
+	async show(@Param('id') id: number): Promise<Group> {
 		return await this.groupService.findOneById(id);
 	}
 }
