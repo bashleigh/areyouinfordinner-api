@@ -105,4 +105,8 @@ export default class GroupService {
 			},
 		});
 	}
+
+	async find(params: object): Promise<Group> {
+		return await this.groupRepository.findOne(params);
+	}
 }
