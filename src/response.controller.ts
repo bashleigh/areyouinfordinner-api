@@ -31,31 +31,48 @@ export default class ResponseController {
     ) {}
 
     @Get('')
+    async index(
+      @Req() request,
+      @Param('code') code: string,
+    ) {
+        const group = await this.groupService.find({
+            where: {
+                code: code,
+            },
+            relations: [
+              'responses',
+            ],
+        });
+
+        return group.responses;
+    }
+
+    @Post('')
     async create(
         @Req() request,
         @Param('code') code: string,
-        @Body(new ValidationPipe()) body: ResponseModel
+        @Body(new ValidationPipe()) body: ResponseModel,
     ): Promise<Response> {
-        const group = this.groupService.findOneByCode(code);
+        const group = await this.groupService.findOneByCode(code);
 
         // TODO check if this is handled above
         // if (!group) throw
 
-        return await this.responseService.create(body, group, user);
+        return await this.responseService.create(body, group, request.user);
     }
 
     @Put(':id')
-    async create(
+    async update(
         @Req() request,
         @Param('code') code: string,
         @Param('id') id: number,
         @Body(new ValidationPipe()) body: ResponseModel
     ): Promise<Response> {
-        const group = this.groupService.findOneByCode(code);
+        const group = await this.groupService.findOneByCode(code);
 
         // TODO check if this is handled above
         // if (!group) throw
 
-        return await this.responseService.create(body, group, user);
+        return await this.responseService.create(body, group, request.user);
     }
 }

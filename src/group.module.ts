@@ -13,7 +13,10 @@ import {
 } from '@nestjs/typeorm';
 
 import GroupService from './group.service';
+import ResponseService from './response.service';
+
 import GroupController from './group.controller';
+import ResponseController from './response.controller';
 
 @Module({
 	imports: [
@@ -25,9 +28,11 @@ import GroupController from './group.controller';
 	],
 	controllers: [
 		GroupController,
+		ResponseController,
 	],
 	components: [
 		GroupService,
+		ResponseService,
 	],
 })
 export default class GroupModule {
