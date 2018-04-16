@@ -7,8 +7,10 @@ import {
 	Index,
 	ManyToMany,
 	JoinTable,
+	OneToMany,
 } from 'typeorm';
 import User from './user.entity';
+import Response from './response.entity';
 
 @Entity()
 export default class Group {
@@ -33,6 +35,9 @@ export default class Group {
 	@ManyToMany(type => User, user => user.groups)
 	@JoinTable()
 	users: User[];
+
+	@OneToMany(type => Response, response => response.group)
+	responses: Response[];
 
 	@CreateDateColumn()
 	created;

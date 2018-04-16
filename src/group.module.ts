@@ -4,6 +4,7 @@ import {
 } from '@nestjs/common';
 import {
 	GroupEntity,
+	ResponseEntity,
 } from './entities';
 import ConfigModule from '@bashleigh/nest-config';
 
@@ -18,6 +19,7 @@ import GroupController from './group.controller';
 	imports: [
 		TypeOrmModule.forFeature([
 			GroupEntity,
+			ResponseEntity,
 		]),
 		ConfigModule,
 	],

@@ -6,8 +6,10 @@ import {
 	CreateDateColumn,
 	UpdateDateColumn,
 	ManyToMany,
+	OneToMany,
 } from 'typeorm';
 import Group from './group.entity';
+import Response from './response.entity';
 
 @Entity()
 export default class User {
@@ -39,6 +41,9 @@ export default class User {
 
 	@ManyToMany(type => Group, group => group.users)
 	groups: Group[];
+
+	@OneToMany(type => Response, response => response.user)
+	responses: Response[];
 
 	@CreateDateColumn()
 	created;

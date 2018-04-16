@@ -32,9 +32,6 @@ import {
 
 @Component()
 export default class GroupService {
-
-	private saltRounds = 10;
-
 	constructor(
 		private readonly config: ConfigService,
 		@InjectRepository(Group)
@@ -79,7 +76,7 @@ export default class GroupService {
 				'users',
 			],
 		});
-		
+
 		if (!group) throw new NotFoundException('entity not found');
 
 		group.users.push(user);
