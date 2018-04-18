@@ -1,20 +1,15 @@
 import {
     Entity,
-    PrimaryGeneratedColumn,
     Column,
-    CreateDateColumn,
-    UpdateDateColumn,
     ManyToOne,
     JoinTable,
 } from 'typeorm';
+import Base from './base.entity';
 import User from './user.entity';
 import Group from './group.entity';
 
 @Entity()
-export default class Response {
-
-    @PrimaryGeneratedColumn()
-    id: number;
+export default class Response extends Base {
 
     @ManyToOne(type => User, user => user.responses)
     user: User;
@@ -27,10 +22,4 @@ export default class Response {
     @ManyToOne(type => Group, group => group.responses)
     @JoinTable()
     group: Group;
-
-    @CreateDateColumn()
-    created;
-
-    @UpdateDateColumn()
-    updated;
 }

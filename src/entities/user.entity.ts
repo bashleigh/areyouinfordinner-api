@@ -1,21 +1,16 @@
 import {
 	Entity,
-	PrimaryGeneratedColumn,
 	Column,
 	Index,
-	CreateDateColumn,
-	UpdateDateColumn,
 	ManyToMany,
 	OneToMany,
 } from 'typeorm';
+import Base from './base.entity';
 import Group from './group.entity';
 import Response from './response.entity';
 
 @Entity()
-export default class User {
-
-	@PrimaryGeneratedColumn()
-	id: number;
+export default class User extends Base {
 
 	@Column()
 	firstname: string;
@@ -44,11 +39,4 @@ export default class User {
 
 	@OneToMany(type => Response, response => response.user)
 	responses: Response[];
-
-	@CreateDateColumn()
-	created;
-
-	@UpdateDateColumn()
-	updated;
-
 }
