@@ -30,7 +30,6 @@ export default class GroupController {
 
 	@Get('')
 	async index(@Req() request) {
-		console.log(request.user);
 		return request.user.groups;
 	}
 
