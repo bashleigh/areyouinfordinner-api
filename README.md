@@ -24,7 +24,7 @@ docker-compose up -d
 For development or pre-build applications (working in ts) use `yarn schema:sync` which will sync your database with the entities rather than migration files.
 
 ```bash
-yar schema:sync
+yarn schema:sync
 ```
 
 For production env, use
