@@ -6,6 +6,7 @@ import {
     Req,
     Put,
     Param,
+    NotFoundException,
 } from '@nestjs/common';
 
 import {
@@ -35,14 +36,18 @@ export default class ResponseController {
       @Req() request,
       @Param('code') code: string,
     ) {
+        // TODO limit to today's responses
         const group = await this.groupService.find({
             where: {
                 code: code,
             },
             relations: [
               'responses',
+              'responses.user',
             ],
         });
+
+        if (!group) throw new NotFoundException();
 
         return group.responses;
     }
@@ -55,8 +60,9 @@ export default class ResponseController {
     ): Promise<Response> {
         const group = await this.groupService.findOneByCode(code);
 
-        // TODO check if this is handled above
-        // if (!group) throw
+        if (!group) throw new NotFoundException();
+
+        // TODO validation rule for checking if response exists for this day for that user
 
         return await this.responseService.create(body, group, request.user);
     }
@@ -66,12 +72,11 @@ export default class ResponseController {
         @Req() request,
         @Param('code') code: string,
         @Param('id') id: number,
-        @Body(new ValidationPipe()) body: ResponseModel
+        @Body(new ValidationPipe()) body: ResponseModel,
     ): Promise<Response> {
         const group = await this.groupService.findOneByCode(code);
 
-        // TODO check if this is handled above
-        // if (!group) throw
+        if (!group) throw new NotFoundException();
 
         return await this.responseService.update(id, body, group, request.user);
     }

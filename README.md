@@ -1,4 +1,4 @@
-Are You In For Dinner API
+Are You In For Dinner API :fork_and_knife: :pizza: :taco:
 ===
 
 An API for tracking if you're in for dinner or not. To stop the arguments about who did or didn't say they were or weren't in for dinner. Built to prove my mum wrong.
@@ -39,3 +39,7 @@ yarn migrate:revert
 ```
 
 More information about typeorm migrations [here.](https://github.com/typeorm/typeorm/blob/master/docs/migrations.md)
+
+### Logging queries
+
+Add `"logging": true` to `ormconfig.json` to display typeorm logs.
