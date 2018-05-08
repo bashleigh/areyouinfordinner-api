@@ -1,4 +1,4 @@
-![burger](https://github.com/bashleigh/areyouinfordinner-app/blob/master/PixelArt.png?raw=true)
+![burger](https://github.com/bashleigh/areyouinfordinner-app/blob/design/public/burger.png?raw=true)
 
 Are You In For Dinner API :fork_and_knife: :pizza: :taco:
 ===
@@ -45,3 +45,13 @@ More information about typeorm migrations [here.](https://github.com/typeorm/typ
 ### Logging queries
 
 Add `"logging": true` to `ormconfig.json` to display typeorm logs.
+
+
+## Assets 
+
+Start building assets with 
+
+```bash
+yarn assets:start
+```
+
