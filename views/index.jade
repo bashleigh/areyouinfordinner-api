@@ -2,7 +2,7 @@ html(prefix="og: http://ogp.me/ns#")
 head(lang="en")
     link(rel="stylesheet" href="build/" + manifest['index.css.css'])
     meta(charset="UTF-8")
-    title Are You In Fot Dinner
+    title Are You In For Dinner
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
 body
     .hero.is-primary.is-large
@@ -15,9 +15,10 @@ body
                     .navbar-menu
                         .navbar-end
                             .navbar-item
-                                iframe(src="https://ghbtns.com/github-btn.html?user=bashleigh&repo=areyouinfordinner-app&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px")
-                            .navbar-item
                                 a(href="#howitworks") How it works
+                            .navbar-item
+                                iframe(src="https://ghbtns.com/github-btn.html?user=bashleigh&repo=areyouinfordinner-app&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px")
+
         .hero-body
             .container
                 h1.title Are you in for dinner
@@ -48,8 +49,7 @@ body
         .container
             .columns
                 .column
-                    p="Are you in for dinner created by "
-                        a(href="http://ashleighsimonelli.co.uk") Bashleigh.
+                    p Are you in for dinner created by #[a(href="http://ashleighsimonelli.co.uk") Bashleigh].
 
     script(type="text/javascript" src="https://cdn.ravenjs.com/3.19.1/raven.min.js" crossorigin="anonymous")
     script(type="text/javascript") Raven.config('https://611e1a5ff4254955b24f562e98f4c840@sentry.io/243706').install();
