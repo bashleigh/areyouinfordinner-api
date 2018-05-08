@@ -19,10 +19,7 @@ services:
         working_dir: /var/www
         volumes:
           - ./:/var/www
-        links:
-          - db
-        ports:
-          - 3000:3000
+        network_mode: service:nginx
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -41,8 +38,7 @@ services:
             context: '.docker/nginx'
         ports:
             - 80:80
-            - 43554:43554
         environment:
            - NGINX_HOST=$NGINX_HOST
         links:
-           - node
+            - db
