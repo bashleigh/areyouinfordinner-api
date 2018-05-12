@@ -1,4 +1,4 @@
-![burger](https://github.com/bashleigh/areyouinfordinner-app/blob/design/public/burger.png?raw=true)
+![burger](https://github.com/bashleigh/areyouinfordinner-api/blob/master/public/burger.png?raw=true)
 
 Are You In For Dinner API :fork_and_knife: :pizza: :taco:
 ===
