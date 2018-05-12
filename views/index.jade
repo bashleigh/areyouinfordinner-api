@@ -1,56 +1,63 @@
 html(prefix="og: http://ogp.me/ns#")
-head(lang="en")
-    link(rel="stylesheet" href="build/" + manifest['index.css.css'])
-    meta(charset="UTF-8")
-    title Are You In For Dinner
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-body
-    .hero.is-primary.is-large
-        .hero-head
-            .navbar
+    head(lang="en")
+        link(rel="stylesheet" href="build/" + manifest['index.css.css'])
+        meta(charset="UTF-8")
+        meta(name="keywords" content="are you in for dinner, ashleigh simonelli, app")
+        meta(name="description" content="Are you in for dinner app is an app for logging who is and who isn;t in for dinner tonight")
+        link(rel="icon" type="image/x-icon" href="burger.ico")
+        title Are You In For Dinner
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    body
+        .hero.is-primary.is-large
+            .hero-head
+                .navbar
+                    .container
+                        .navbar-brand
+                            .navbar-item
+                                .media
+                                    .media-left
+                                        img(src="burger-small.png")
+                                    .content
+                                        a(href="/" title="Are you in for dinner") AreYouInForDinner
+                        .navbar-menu
+                            .navbar-end
+                                .navbar-item
+                                    a(href="#howitworks") How it works
+                                .navbar-item
+                                    iframe(src="https://ghbtns.com/github-btn.html?user=bashleigh&repo=areyouinfordinner-app&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px")
+
+            .hero-body
                 .container
-                    .navbar-brand
-                        .navbar-item
-                            a(href="/") AreYouInForDinner
-                    .navbar-menu
-                        .navbar-end
-                            .navbar-item
-                                a(href="#howitworks") How it works
-                            .navbar-item
-                                iframe(src="https://ghbtns.com/github-btn.html?user=bashleigh&repo=areyouinfordinner-app&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px")
+                    h1.title Are you in for dinner
+                    h2.subtitle A notification app for tracking who's in for dinner in your household
+                    p or uni dorm etc.
+                    p Built to prove my mum wrong!
 
-        .hero-body
+        section.section
             .container
-                h1.title Are you in for dinner
-                h2.subtitle A notification app for tracking who's in for dinner in your household
-                p or uni dorm etc.
-                p Built to prove my mum wrong!
+                .columns
+                    .column.is-half-desktop
+                        h2.title Let your family know if you're in for dinner or not
+                        p.subtitle Are you tired of arguing about whether you said you was or wasn't in for dinner?
+                        p Well, I built an app for that. I got fed up of the "I said I was in for dinner tonight!" argument with my mum every night and going hungry.
+                        p As well as the "I didn't know you was going to be in" argument when I made dinner for myself only.
+                    .column.is-half-desktop.has-text-centered
+                        img(src="burger.png")
 
-    section.section
-        .container
-            .columns
-                .column.is-half-desktop
-                    h2.title Let your family know if you're in for dinner or not
-                    p.subtitle Are you tired of arguing about whether you said you was or wasn't in for dinner?
-                    p Well, I built an app for that. I got fed up of the "I said I was in for dinner tonight!" argument with my mum every night and going hungry.
-                    p As well as the "I didn't know you was going to be in" argument when I made dinner for myself only.
-                .column.is-half-desktop.has-text-centered
-                    img(src="burger.png")
+        section.section#howitworks
+            .container
+                .columns
+                    .column
+                        h1.title How it works
+                        p The idea is simple. You receive a notification from the app around 12pm prompting you with a yes and no question as to if you're in for dinner or not. Then again at 3pm.
+                        p If you don't answer before 5pm the app presumes you're not in for dinner and sends a notification to everyone in the group as to how many people are in for dinner for that particular day.
 
-    section.section#howitworks
-        .container
-            .columns
-                .column
-                    h1.title How it works
-                    p The idea is simple. You receive a notification from the app around 12pm prompting you with a yes and no question as to if you're in for dinner or not. Then again at 3pm.
-                    p If you don't answer before 5pm the app presumes you're not in for dinner and sends a notification to everyone in the group as to how many people are in for dinner for that particular day.
+        footer.footer
+            .container
+                .columns
+                    .column
+                        p Are you in for dinner created by #[a(href="http://ashleighsimonelli.co.uk") Bashleigh].
 
-    footer.footer
-        .container
-            .columns
-                .column
-                    p Are you in for dinner created by #[a(href="http://ashleighsimonelli.co.uk") Bashleigh].
-
-    script(type="text/javascript" src="https://cdn.ravenjs.com/3.19.1/raven.min.js" crossorigin="anonymous")
-    script(type="text/javascript") Raven.config('https://611e1a5ff4254955b24f562e98f4c840@sentry.io/243706').install();
-    script(async src="https://www.googletagmanager.com/gtag/js?id=UA-65079852-1" type="text/javascript")
+        script(type="text/javascript" src="https://cdn.ravenjs.com/3.19.1/raven.min.js" crossorigin="anonymous")
+        script(type="text/javascript") Raven.config('https://611e1a5ff4254955b24f562e98f4c840@sentry.io/243706').install();
+        script(async src="https://www.googletagmanager.com/gtag/js?id=UA-65079852-1" type="text/javascript")

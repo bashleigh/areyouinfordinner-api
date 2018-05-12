@@ -1,3 +1,7 @@
 @import "~bulma/sass/utilities/initial-variables";
 @import './_variables';
 @import '~bulma';
+
+section.section:nth-child(even) {
+  background: #FCFCFC;
+}
