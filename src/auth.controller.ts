@@ -4,6 +4,7 @@ import {
 	Body,
 	Get,
 	Req,
+	BadRequestException,
 } from '@nestjs/common';
 
 import UserService from './user.service';
@@ -36,7 +37,14 @@ export default class AuthController {
 
 	@Post('register')
 	async register(@Body(new ValidationPipe()) body: UserModel): Promise<object> {
-		let user = await this.userService.create(body);
+
+		if (await this.userService.findByEmail(body.email)) {
+			throw new BadRequestException({
+				error: 'duplicate entry',
+			});
+		}
+
+		const user = await this.userService.create(body);
 
 		const token = this.authService.createToken(user);
 
