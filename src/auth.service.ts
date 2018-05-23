@@ -27,7 +27,7 @@ export default class AuthService {
 	}
 
 	createToken(user: User): object {
-		const expiresIn = 60 * 60;
+		const expiresIn = this.config.get('JWT_EXPIRES_IN', 3600);
 		const verifier = { email: user.email };
 
 		const token = jwt.sign(verifier, this.config.get('JWT_SECRET'), { expiresIn });
@@ -54,6 +54,5 @@ export default class AuthService {
 		if (!payload.hasOwnProperty('email')) return false;
 
 		return await this.userService.findByEmail(payload.email);
-
 	}
 }
