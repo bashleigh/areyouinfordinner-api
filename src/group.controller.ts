@@ -30,7 +30,13 @@ export default class GroupController {
 
 	@Get('')
 	async index(@Req() request) {
-		return request.user.groups;
+		
+		const groups = await this.groupService.paginate({
+			userId: request.user.id,
+			skip: request.query.hasOwnProperty('page') ? request.query.page : 0,
+		});
+
+		return groups;
 	}
 
 	@Post('')

@@ -64,7 +64,7 @@ export default class GroupService {
 		const group = this.groupRepository.create(params);
 		group.code = generate();
 		group.users = [user];
-		return  await this.groupRepository.save(group);
+		return await this.groupRepository.save(group);
 	}
 
 	async update(code: string, params: GroupModel, user: UserModel): Promise<Group> {
