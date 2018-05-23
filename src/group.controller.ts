@@ -20,6 +20,7 @@ import {
 
 import {
 	GroupModel,
+	Paginate,
 } from 'models';
 
 @Controller('group')
@@ -29,14 +30,11 @@ export default class GroupController {
 	) {}
 
 	@Get('')
-	async index(@Req() request) {
-		
-		const groups = await this.groupService.paginate({
+	async index(@Req() request): Promise<Paginate> {
+		return await this.groupService.paginate({
 			userId: request.user.id,
 			skip: request.query.hasOwnProperty('page') ? request.query.page : 0,
 		});
-
-		return groups;
 	}
 
 	@Post('')

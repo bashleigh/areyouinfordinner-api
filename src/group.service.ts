@@ -37,7 +37,7 @@ export default class GroupService {
 		@InjectRepository(Group)
 		private readonly groupRepository: Repository<Group>) {}
 
-	async paginate(params: FindManyOptions<Group> = {take: 10, skip: 0}): Paginate {
+	async paginate(params: FindManyOptions<Group> = {take: 10, skip: 0}): Promise<Paginate> {
 
 		if (!params.hasOwnProperty('take')) params.take = parseInt(this.config.get('PAGINATE_DEFAULT', 10));
 		if (!params.hasOwnProperty('skip')) params.skip = 0;
