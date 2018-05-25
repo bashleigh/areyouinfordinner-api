@@ -27,7 +27,7 @@ export default class AuthService {
 	}
 
 	createToken(user: User): object {
-		const expiresIn = this.config.get('JWT_EXPIRES_IN', 3600);
+		const expiresIn = parseInt(this.config.get('JWT_EXPIRES_IN', 3600));
 		const verifier = { email: user.email };
 
 		const token = jwt.sign(verifier, this.config.get('JWT_SECRET'), { expiresIn });
