@@ -41,7 +41,7 @@ export default class AuthService {
 		const user = await this.userService.findByEmailWithPassword(auth.email);
 
 		if (!user) throw new BadRequestException('Invalid credentials');
-		
+
 		const valid = await this.userService.compareHash(auth.password, user.password);
 
 		if (!valid) throw new BadRequestException('Invalid credentials');
