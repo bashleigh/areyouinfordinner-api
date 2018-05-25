@@ -101,7 +101,7 @@ export default class UserService {
 	}
 
 	async compareHash(password: string|undefined, hash: string|undefined): Promise<boolean> {
-		return bcrypt.compare(password, hash);
+		return await bcrypt.compare(password, hash);
 	}
 
 	async findOneById(id: string): Promise<User> {
