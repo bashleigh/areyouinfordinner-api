@@ -25,7 +25,7 @@ export default class User extends Base {
 	email: string;
 
 	@Column({
-		//select: false,
+		select: false,
 	})
 	password: string;
 

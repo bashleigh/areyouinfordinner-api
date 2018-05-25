@@ -113,4 +113,15 @@ export default class UserService {
 			email: email,
 		});
 	}
+
+	async findByEmailWithPassword(email: string): Promise<User>|null {
+		return await this.userRepository.findOne({
+			email: email,
+		}, {
+			select: [
+				'email',
+				'password',
+			],
+		});
+	}
 }
