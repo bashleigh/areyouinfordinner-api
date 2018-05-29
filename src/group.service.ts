@@ -53,7 +53,7 @@ export default class GroupService {
 		return new Paginate({
 			items: groups,
 			count: groups.length,
-			total: total,
+			total,
 			pages: Math.ceil(total / params.take),
 		});
 	}
