@@ -48,15 +48,13 @@ export default class GroupService {
 
 		params.skip = params.skip * params.take;
 
-		const groups = await this.groupRepository.find(params);
-
-		const total = await this.groupRepository.count();
+		const [groups, total] = await this.groupRepository.findAndCount(params);
 
 		return new Paginate({
 			items: groups,
 			count: groups.length,
 			total: total,
-			pages: Math.round(total / params.take),
+			pages: Math.ceil(total / params.take),
 		});
 	}
 
