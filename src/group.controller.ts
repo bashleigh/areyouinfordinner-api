@@ -32,7 +32,13 @@ export default class GroupController {
 	@Get('')
 	async index(@Req() request): Promise<Paginate> {
 		return await this.groupService.paginate({
-			userId: request.user.id,
+			relations: [
+			 	'users',
+			],
+			where: (qb) => {
+				// TODO figure out how to do this a LOT nicer
+				return '`Group_Group_users`.`userId` = ' + request.user.id;
+			},
 			skip: request.query.hasOwnProperty('page') ? request.query.page : 0,
 		});
 	}
