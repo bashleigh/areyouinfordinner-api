@@ -1,6 +1,4 @@
-import {
-  NestFactory,
-} from '@nestjs/core';
+import { NestFactory } from '@nestjs/core';
 import AppModule from './app.module';
 import * as path from 'path';
 import * as express from 'express';

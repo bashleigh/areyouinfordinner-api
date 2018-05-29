@@ -1,46 +1,27 @@
-import {
-	Module,
-	MiddlewaresConsumer,
-	RequestMethod,
-} from '@nestjs/common';
+import { Module, MiddlewaresConsumer, RequestMethod } from '@nestjs/common';
 import * as passport from 'passport';
 import AuthController from './auth.controller';
 import UserService from './user.service';
 import AuthService from './auth.service';
 import JwtStrategy from './jwt.strategy';
 
-import {
-	UserEntity,
-} from './entities';
+import { UserEntity } from './entities';
 import ConfigModule from '@bashleigh/nest-config';
 
-import {
-	TypeOrmModule,
-} from '@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-	imports: [
-		TypeOrmModule.forFeature([
-			UserEntity,
-		]),
-		ConfigModule,
-	],
-	controllers: [
-		AuthController,
-	],
-	components: [
-		UserService,
-		AuthService,
-		JwtStrategy,
-	],
+  imports: [TypeOrmModule.forFeature([UserEntity]), ConfigModule],
+  controllers: [AuthController],
+  components: [UserService, AuthService, JwtStrategy],
 })
 export default class AuthModule {
-	public configure(consumer: MiddlewaresConsumer) {
-		consumer
-			.apply(passport.authenticate('jwt', { session: false }))
-			.forRoutes(
-				{ path: '/group/', method: RequestMethod.ALL },
-				{ path: '/auth/me', method: RequestMethod.ALL },
-			);
-	}
+  public configure(consumer: MiddlewaresConsumer) {
+    consumer
+      .apply(passport.authenticate('jwt', { session: false }))
+      .forRoutes(
+        { path: '/group/', method: RequestMethod.ALL },
+        { path: '/auth/me', method: RequestMethod.ALL },
+      );
+  }
 }

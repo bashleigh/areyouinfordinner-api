@@ -1,9 +1,5 @@
-import {
-	MinLength,
-} from 'class-validator';
+import { MinLength } from 'class-validator';
 
 export default class GroupModel {
-
-	@MinLength
-	readonly name;
+  @MinLength readonly name;
 }

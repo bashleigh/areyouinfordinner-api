@@ -1,18 +1,15 @@
 import {
-    PrimaryGeneratedColumn,
-    CreateDateColumn,
-    UpdateDateColumn,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 abstract class Base {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn() id: number;
 
-    @CreateDateColumn()
-    created;
+  @CreateDateColumn() created;
 
-    @UpdateDateColumn()
-    updated;
+  @UpdateDateColumn() updated;
 }
 
 export default Base;

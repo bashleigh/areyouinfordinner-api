@@ -1,8 +1,4 @@
-import {
-  Get,
-  Controller,
-  Res,
-} from '@nestjs/common';
+import { Get, Controller, Res } from '@nestjs/common';
 const manifest = require(process.cwd() + '/public/build/manifest.json');
 
 @Controller()

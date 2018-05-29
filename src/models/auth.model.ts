@@ -1,13 +1,8 @@
-import {
-	IsEmail,
-	MinLength,
-} from 'class-validator';
+import { IsEmail, MinLength } from 'class-validator';
 
 export default class AuthModel {
+  @IsEmail() readonly email: string;
 
-	@IsEmail()
-	readonly email: string;
-
-	@MinLength(8)
-	readonly password: string;
+  @MinLength(8)
+  readonly password: string;
 }

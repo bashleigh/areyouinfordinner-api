@@ -1,127 +1,115 @@
-import {
-	Component,
-	NotFoundException,
-} from '@nestjs/common';
+import { Component, NotFoundException } from '@nestjs/common';
 
 import * as bcrypt from 'bcrypt';
 
-import {
-	InjectRepository,
-} from '@nestjs/typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
-import {
-	Repository,
-	FindManyOptions,
-} from 'typeorm';
+import { Repository, FindManyOptions } from 'typeorm';
 
-import {
-	UserEntity as User,
-} from './entities';
+import { UserEntity as User } from './entities';
 
-import {
-	UserModel,
-	Paginate,
-} from './models';
+import { UserModel, Paginate } from './models';
 
-import {
-	ConfigService,
-} from '@bashleigh/nest-config';
+import { ConfigService } from '@bashleigh/nest-config';
 
 @Component()
 export default class UserService {
+  private saltRounds = 10;
 
-	private saltRounds = 10;
+  constructor(
+    private readonly config: ConfigService,
+    @InjectRepository(User) private readonly userRepository: Repository<User>,
+  ) {}
 
-	constructor(
-		private readonly config: ConfigService,
-		@InjectRepository(User)
-		private readonly userRepository: Repository<User>) {}
+  async paginate(
+    params: FindManyOptions<User> = { take: 10, skip: 0 },
+  ): Paginate {
+    if (!params.hasOwnProperty('take'))
+      params.take = parseInt(this.config.get('PAGINATE_DEFAULT', 10));
+    if (!params.hasOwnProperty('skip')) params.skip = 0;
+    if (typeof params.take !== 'number') params.take = parseInt(params.take);
 
-	async paginate(params: FindManyOptions<User> = {take: 10, skip: 0}): Paginate {
+    if (params.take > parseInt(this.config.get('PAGINATE_MAX', 100)))
+      params.take = parseInt(this.config.get('PAGINATE_MAX', 100));
 
-		if (!params.hasOwnProperty('take')) params.take = parseInt(this.config.get('PAGINATE_DEFAULT', 10));
-		if (!params.hasOwnProperty('skip')) params.skip = 0;
-		if (typeof(params.take) !== 'number') params.take = parseInt(params.take);
+    params.skip = params.skip * params.take;
 
-		if (params.take > parseInt(this.config.get('PAGINATE_MAX', 100)))
-			params.take = parseInt(this.config.get('PAGINATE_MAX', 100));
+    const users = await this.userRepository.find(params);
 
-		params.skip = params.skip * params.take;
+    const total = await this.userRepository.count();
 
-		const users = await this.userRepository.find(params);
+    return new Paginate({
+      items: users,
+      count: users.length,
+      total: total,
+      pages: Math.round(total / params.take),
+    });
+  }
 
-		const total = await this.userRepository.count();
+  async create(params: UserModel): User {
+    const user = this.userRepository.create(params);
 
-		return new Paginate({
-			items: users,
-			count: users.length,
-			total: total,
-			pages: Math.round(total / params.take),
-		});
-	}
+    user.password = await this.getHash(user.password);
 
-	async create(params: UserModel): User {
+    const result = await this.userRepository.save(user);
 
-		const user = this.userRepository.create(params);
+    delete result.password;
 
-		user.password = await this.getHash(user.password);
+    return result;
+  }
 
-		const result = await this.userRepository.save(user);
+  async update(id: string, params: UserModel): User {
+    let user = await this.findOneById(id);
 
-		delete result.password;
+    if (!user) throw new NotFoundException('entity not found');
 
-		return result;
-	}
+    user = {
+      ...user,
+      ...params,
+    };
 
-	async update(id: string, params: UserModel): User {
-		let user = await this.findOneById(id);
+    if (params.hasOwnProperty('password'))
+      user.password = await this.getHash(user.password);
 
-		if (!user) throw new NotFoundException('entity not found');
+    await this.userRepository.save(user);
+    delete user.password;
 
-		user = {
-			...user,
-			...params,
-		};
+    return user;
+  }
 
-		if (params.hasOwnProperty('password'))
-			user.password = await this.getHash(user.password);
+  async destroy(id: string): Promise<void> {
+    return await this.userRepository.deleteById(id);
+  }
 
-		await this.userRepository.save(user);
-		delete user.password;
+  async getHash(password: string | undefined): Promise<string> {
+    return await bcrypt.hash(password, 10);
+  }
 
-		return user;
-	}
+  async compareHash(
+    password: string | undefined,
+    hash: string | undefined,
+  ): Promise<boolean> {
+    return await bcrypt.compare(password, hash);
+  }
 
-	async destroy(id: string): Promise<void> {
-		return await this.userRepository.deleteById(id);
-	}
+  async findOneById(id: string): Promise<User> {
+    return await this.userRepository.findOneById(id);
+  }
 
-	async getHash(password: string|undefined): Promise<string> {
-		return await bcrypt.hash(password, 10);
-	}
+  async findByEmail(email: string): Promise<User> | null {
+    return await this.userRepository.findOne({
+      email: email,
+    });
+  }
 
-	async compareHash(password: string|undefined, hash: string|undefined): Promise<boolean> {
-		return await bcrypt.compare(password, hash);
-	}
-
-	async findOneById(id: string): Promise<User> {
-		return await this.userRepository.findOneById(id);
-	}
-
-	async findByEmail(email: string): Promise<User>|null {
-		return await this.userRepository.findOne({
-			email: email,
-		});
-	}
-
-	async findByEmailWithPassword(email: string): Promise<User>|null {
-		return await this.userRepository.findOne({
-			email: email,
-		}, {
-			select: [
-				'email',
-				'password',
-			],
-		});
-	}
+  async findByEmailWithPassword(email: string): Promise<User> | null {
+    return await this.userRepository.findOne(
+      {
+        email: email,
+      },
+      {
+        select: ['email', 'password'],
+      },
+    );
+  }
 }
