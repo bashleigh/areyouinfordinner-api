@@ -29,14 +29,14 @@ export default class GroupController {
     @Req() request,
     @Body(new ValidationPipe())
     body: GroupModel,
-  ): Promise<Group> {
+  ): Promise<Group[]> {
     return await this.groupService.create(body, request.user);
   }
 
   @Put(':code')
   async update(
     @Req() request,
-    @Param('code') code: number,
+    @Param('code') code: string,
     @Body(new ValidationPipe())
     body: GroupModel,
   ): Promise<Group> {
